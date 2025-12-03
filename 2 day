@@ -16,7 +16,58 @@ for j in range(l):
         cou+=1
 print(cou)
 
+# 2.2
 
+l = 1000
+
+def perevirka(mas):
+    r = 0
+    c = 0
+    for i in range(len(mas) - 1):
+        if r <= 1:
+            if 0 < abs(mas[i] - mas[i + 1]) <= 3:
+                c += 1
+            else:
+                r += 1
+        else:
+            break
+    resul = [r, c == len(mas) - 1]
+    return resul
+
+
+cou = 0
+for j in range(l):
+    arr = list(map(int, input().split()))
+    # print(arr, sorted(arr), sorted(arr, reverse=True))
+    if arr == sorted(arr) or arr == sorted(arr, reverse=True):
+        res = perevirka(arr)
+        if res[0] <=1:
+            cou+=1
+            continue
+            # print(arr, "nezmin")
+    else:
+        copies = []
+        countrem = 0
+        for t in range(len(arr)):
+            newArr = arr.copy()
+            newArr.remove(arr[t])
+    #         print(newArr, t, arr[t], arr)
+            if newArr == sorted(newArr) or newArr == sorted(newArr, reverse=True):
+                countrem+=1
+                copies.append(newArr)
+        if countrem == 0:
+            continue
+        else:
+            # print(copies)
+            for w in range(countrem):
+                res = perevirka(copies[w])
+                # print(res)
+                # print(copies[w])
+                if res[0] == 0 and res[1] == True:
+                    cou += 1
+                    # print(copies[w], "zmin")
+                    break
+print("cou=", cou)
 
 # 69 72 75 78 80 79
 # 40 42 43 46 47 48 49 49
