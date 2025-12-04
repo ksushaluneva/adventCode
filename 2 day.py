@@ -24,10 +24,16 @@ def perevirka(mas):
     r = 0
     c = 0
     for i in range(len(mas) - 1):
-        if r <= 1:
+        if r <= 2:
             if 0 < abs(mas[i] - mas[i + 1]) <= 3:
                 c += 1
             else:
+                if i > 0 and (i < len(mas) - 1):
+                    if abs(mas[i+1] - mas[i -1]) >3:
+                        r+=2
+                if i < len(mas) - 2:
+                    if abs(mas[i+2] - mas[i]) >3:
+                        r+=2
                 r += 1
         else:
             break
@@ -41,10 +47,11 @@ for j in range(l):
     # print(arr, sorted(arr), sorted(arr, reverse=True))
     if arr == sorted(arr) or arr == sorted(arr, reverse=True):
         res = perevirka(arr)
+        print(res)
         if res[0] <=1:
             cou+=1
-            continue
             # print(arr, "nezmin")
+            continue
     else:
         copies = []
         countrem = 0
